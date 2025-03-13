@@ -73,3 +73,5 @@ spring:
 mybatis:
   mapper-locations:
     - /mappers/*.xml
+springdoc:
+  override-with-generic-response: false
