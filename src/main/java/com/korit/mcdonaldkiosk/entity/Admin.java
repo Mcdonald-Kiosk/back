@@ -23,5 +23,5 @@ public class Admin {
     private LocalDateTime createDate;
     private LocalDateTime updateDate;
 
-    private Set<AdminRoleRegister> adminRoleRegisters;
+    private Set<OAuth2> oAuth2s;
 }

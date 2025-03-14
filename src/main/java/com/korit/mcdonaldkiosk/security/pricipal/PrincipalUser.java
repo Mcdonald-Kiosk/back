@@ -1,6 +1,7 @@
 package com.korit.mcdonaldkiosk.security.pricipal;
 
 import com.korit.mcdonaldkiosk.entity.Admin;
+import com.korit.mcdonaldkiosk.entity.OAuth2;
 import lombok.Builder;
 import lombok.Getter;
 import org.springframework.security.core.GrantedAuthority;
@@ -16,8 +17,10 @@ import java.util.stream.Collectors;
 @Getter
 public class PrincipalUser implements UserDetails, OAuth2User {
     private Admin admin;
+    private OAuth2 oAuth2;
     private Map<String, Object> attributes;
     private String name;
+    private Collection<? extends GrantedAuthority> authorities;
 
 
 
@@ -28,7 +31,7 @@ public class PrincipalUser implements UserDetails, OAuth2User {
 
     @Override
     public String getUsername() {
-        return "";
+        return admin.getAdminName();
     }
 
     @Override
@@ -41,34 +44,6 @@ public class PrincipalUser implements UserDetails, OAuth2User {
         return attributes;
     }
 
-    @Override
-    public Collection<? extends GrantedAuthority> getAuthorities() {
-        return admin
-                .getAdminRoleRegisters()
-                .stream()
-                .map(role -> new SimpleGrantedAuthority(role.getRole().getRoleName()))
-                .collect(Collectors.toList());
-    }
-
-    @Override
-    public boolean isAccountNonExpired() {
-        return true;
-    }
-
-    @Override
-    public boolean isAccountNonLocked() {
-        return true;
-    }
-
-    @Override
-    public boolean isCredentialsNonExpired() {
-        return true;
-    }
-
-    @Override
-    public boolean isEnabled() {
-        return true;
-    }
 }
 
 
