@@ -13,9 +13,9 @@ import java.time.LocalDateTime;
 @Builder
 public class OAuth2 {
     private int oAuth2Id;
-    private int adminId;
     private String oAuth2Name;
+    private int adminId;
     private String providerName;
-    private LocalDateTime createdDate;
-    private LocalDateTime updatedDate;
+    private LocalDateTime createDate;
+    private LocalDateTime updateDate;
 }

@@ -1,5 +1,10 @@
 package com.korit.mcdonaldkiosk.config;
 
+import com.korit.mcdonaldkiosk.security.filter.JwtAuthenticationFilter;
+import com.korit.mcdonaldkiosk.security.handler.CustomAuthenticationEntryPoint;
+import com.korit.mcdonaldkiosk.security.oAuth2.CustomOAuth2SuccessHandler;
+import com.korit.mcdonaldkiosk.security.oAuth2.CustomOAuth2UserService;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.security.config.Customizer;
@@ -16,6 +21,14 @@ import org.springframework.web.cors.UrlBasedCorsConfigurationSource;
 public class SecurityConfig {
 
 
+    @Autowired
+    private JwtAuthenticationFilter jwtAuthenticationFilter;
+    @Autowired
+    private CustomOAuth2UserService customOAuth2UserService;
+    @Autowired
+    private CustomOAuth2SuccessHandler customOAuth2SuccessHandler;
+    @Autowired
+    private CustomAuthenticationEntryPoint customAuthenticationEntryPoint;
 
     @Bean
     public BCryptPasswordEncoder passwordEncoder() {
@@ -31,6 +44,19 @@ public class SecurityConfig {
         http.sessionManagement(sessionManagement -> {
             sessionManagement.sessionCreationPolicy(SessionCreationPolicy.STATELESS);
         });
+        http.oauth2Login(oauth2 -> {
+            oauth2.userInfoEndpoint(userInfoEndpoint -> {
+                userInfoEndpoint.userService(customOAuth2UserService);
+            });
+            oauth2.successHandler(customOAuth2SuccessHandler);
+        });
+
+        http.addFilterBefore(jwtAuthenticationFilter, UsernamePasswordAuthenticationFilter.class);
+
+        http.exceptionHandling(exception -> {
+            exception.authenticationEntryPoint(customAuthenticationEntryPoint);
+        });
+
         http.authorizeHttpRequests(authorizeRequests -> {
             authorizeRequests.requestMatchers(
                     "/api/auth/**",

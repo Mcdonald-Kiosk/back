@@ -1,5 +1,6 @@
 package com.korit.mcdonaldkiosk.security.oAuth2;
 
+import com.korit.mcdonaldkiosk.entity.OAuth2;
 import com.korit.mcdonaldkiosk.security.pricipal.PrincipalUser;
 import com.korit.mcdonaldkiosk.entity.Admin;
 import com.korit.mcdonaldkiosk.security.jwt.JwtUtil;
@@ -27,7 +28,7 @@ public class CustomOAuth2SuccessHandler implements AuthenticationSuccessHandler 
     private int port;
 
     @Autowired
-    private com.korit.mcdonaldkiosk.security.jwt.JwtUtil jwtUtil;
+    private JwtUtil jwtUtil;
 
     @Override
     public void onAuthenticationSuccess(HttpServletRequest request, HttpServletResponse response, Authentication authentication) throws IOException, ServletException {
