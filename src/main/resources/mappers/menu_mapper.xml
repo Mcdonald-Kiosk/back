@@ -4,4 +4,45 @@
         "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.korit.mcdonaldkiosk.mapper.MenuMapper">
 
+    <resultMap id="menuResultMap" type="com.korit.mcdonaldkiosk.entity.Menu">
+        <id property="menuId" column="menu_id" />
+        <result property="menuName" column="menu_name" />
+        <result property="menuCategory" column="menu_category" />
+        <result property="menuSequence" column="menu_sequence" />
+        <result property="singleImg" column="single_img" />
+        <result property="setImg" column="set_img" />
+
+        <!-- 💡 menuPrice 속성을 menuPriceResultMap과 연결 -->
+        <association property="menuPrice" resultMap="menuPriceResultMap"/>
+    </resultMap>
+
+    <resultMap id="menuPriceResultMap" type="com.korit.mcdonaldkiosk.entity.MenuPrice">
+        <id property="menuPriceId" column="menu_price_id" />
+        <result property="menuId" column="menu_id" />
+        <result property="menuPrice" column="menu_price" />
+        <result property="menuSetPrice" column="menu_set_price" />
+        <result property="menuSetLunchPrice" column="menu_set_lunch_price" />
+        <result property="menuLargePrice" column="menu_large_price" />
+    </resultMap>
+
+    <select id="selectAllMenus" resultMap="menuResultMap">
+        SELECT
+            m.menu_id,
+            m.menu_name,
+            m.menu_category,
+            m.menu_sequence,
+            m.single_img,
+            m.set_img,
+
+            mp.menu_price_id,
+            mp.menu_id AS mp_menu_id,
+            mp.menu_price,
+            mp.menu_set_price,
+            mp.menu_set_lunch_price,
+            mp.menu_large_price
+        FROM
+            menu_tb m
+            LEFT OUTER JOIN menu_price_tb mp ON m.menu_id = mp.menu_id
+    </select>
+
 </mapper>
