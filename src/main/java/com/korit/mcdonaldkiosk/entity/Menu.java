@@ -12,11 +12,10 @@ import lombok.NoArgsConstructor;
 public class Menu {
     private int menuId;
     private String menuName;
-    private String categoryId;
-    private String categoryName;
-    private String categoryNameKor;
-    private String menuCount;
-    private int menuPrice;
-    private int menuCal;
-    private String menuImg;
+    private String menuCategory;
+    private int menuSequence;
+    private String singleImg;
+    private String setImg;
+
+    private MenuPrice menuPrice;  // 💡 가격 정보를 포함하도록 추가
 }
