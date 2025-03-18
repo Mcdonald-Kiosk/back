@@ -13,7 +13,7 @@ public class Menu {
     private int menuId;
     private String menuName;
     private String menuCategory;
-    private int menuSequence;
+    private int menuSequence;   // 메뉴의 순서를 정하기 위한 시퀀스
     private String singleImg;
     private String setImg;
 
