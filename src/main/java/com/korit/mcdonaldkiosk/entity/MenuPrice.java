@@ -12,8 +12,7 @@ import lombok.NoArgsConstructor;
 public class MenuPrice {
     private int menuPriceId;
     private int menuId;
+    private String size;
     private int menuPrice;
-    private int menuSetPrice;
-    private int menuSetLunchPrice;
-    private int menuLargePrice;
+    private int discountPrice;
 }
