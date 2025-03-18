@@ -5,24 +5,25 @@
 <mapper namespace="com.korit.mcdonaldkiosk.mapper.MenuMapper">
 
     <resultMap id="menuResultMap" type="com.korit.mcdonaldkiosk.entity.Menu">
-        <id property="menuId" column="menu_id" />
-        <result property="menuName" column="menu_name" />
-        <result property="menuCategory" column="menu_category" />
-        <result property="menuSequence" column="menu_sequence" />
-        <result property="singleImg" column="single_img" />
-        <result property="setImg" column="set_img" />
+        <id property="menuId" column="m.menu_id" />
+        <result property="menuName" column="m.menu_name" />
+        <result property="menuCategory" column="m.menu_category" />
+        <result property="menuSequence" column="m.menu_sequence" />
+        <result property="singleImg" column="m.single_img" />
+        <result property="setImg" column="m.set_img" />
+        <result property="isExposure" column="m.is_exposure" />
 
-        <!-- 💡 menuPrice 속성을 menuPriceResultMap과 연결 -->
-        <association property="menuPrice" resultMap="menuPriceResultMap"/>
+        <!-- db에서 계산식 적용 -->
+        <!-- menuPrice 속성을 menuPriceResultMap과 연결 -->
+        <collection property="menuPrice" resultMap="menuPriceResultMap"/>
     </resultMap>
 
     <resultMap id="menuPriceResultMap" type="com.korit.mcdonaldkiosk.entity.MenuPrice">
-        <id property="menuPriceId" column="menu_price_id" />
-        <result property="menuId" column="menu_id" />
-        <result property="menuPrice" column="menu_price" />
-        <result property="menuSetPrice" column="menu_set_price" />
-        <result property="menuSetLunchPrice" column="menu_set_lunch_price" />
-        <result property="menuLargePrice" column="menu_large_price" />
+        <id property="menuPriceId" column="mp.menu_price_id" />
+        <result property="menuId" column="mp.menu_id" />
+        <result property="size" column="mp.size" />
+        <result property="menuPrice" column="mp.menu_price" />
+        <result property="discountPrice" column="mp.discount_price" />
     </resultMap>
 
     <select id="selectAllMenus" resultMap="menuResultMap">
@@ -33,16 +34,37 @@
             m.menu_sequence,
             m.single_img,
             m.set_img,
+            m.is_exposure,
 
-            mp.menu_price_id,
             mp.menu_id AS mp_menu_id,
+            mp.size,
             mp.menu_price,
-            mp.menu_set_price,
-            mp.menu_set_lunch_price,
-            mp.menu_large_price
+            mp.discount_price
         FROM
             menu_tb m
             LEFT OUTER JOIN menu_price_tb mp ON m.menu_id = mp.menu_id
     </select>
+
+    <!--  메뉴 추가  -->
+    <insert id="insertMenu" useGeneratedKeys="true" keyProperty="menuId">
+        INSERT INTO
+            menu_tb (
+                menu_name,
+                menu_category,
+                menu_sequence,
+                single_img,
+                set_img,
+                is_exposure
+            )
+        VALUES
+            (
+                #{menuName},
+                #{menuCategory},
+                #{menuSequence},
+                #{singleImg},
+                #{setImg},
+                #{isExposure}
+            );
+    </insert>
 
 </mapper>

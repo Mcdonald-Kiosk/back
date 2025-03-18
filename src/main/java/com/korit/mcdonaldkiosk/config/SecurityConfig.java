@@ -59,18 +59,14 @@ public class SecurityConfig {
 
         http.authorizeHttpRequests(authorizeRequests -> {
             authorizeRequests.requestMatchers(
-                    "/api/admin/**",
+                    "/api/auth/**",
                     "/image/**",
                     "/admin/**",
                     "/swagger-ui/**",
                     "/swagger-resources/**",
                     "/v3/api-docs/**",
-                    "/user/**",
-                    "/auth/**"
+                    "/user/**"
             ).permitAll();
-//            authorizeRequests.requestMatchers("/admin/**").hasRole("ADMIN");
-//            authorizeRequests.requestMatchers("/account/user/**").hasRole("USER");
-
             authorizeRequests.anyRequest().authenticated();
         });
 

@@ -5,6 +5,8 @@ import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
+import java.util.List;
+
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
@@ -13,9 +15,10 @@ public class Menu {
     private int menuId;
     private String menuName;
     private String menuCategory;
-    private int menuSequence;   // 메뉴의 순서를 정하기 위한 시퀀스
+    private int menuSequence;
     private String singleImg;
     private String setImg;
+    private int isExposure;
 
-    private MenuPrice menuPrice;  // 💡 가격 정보를 포함하도록 추가
+    private List<MenuPrice> menuPrice;  // 💡 가격 정보를 포함하도록 추가
 }
