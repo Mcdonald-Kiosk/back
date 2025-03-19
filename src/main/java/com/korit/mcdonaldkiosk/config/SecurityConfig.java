@@ -60,10 +60,12 @@ public class SecurityConfig {
         http.authorizeHttpRequests(authorizeRequests -> {
             authorizeRequests.requestMatchers(
                     "/api/auth/**",
+                    "/api/user/**",
                     "/image/**",
                     "/admin/**",
                     "/swagger-ui/**",
                     "/swagger-resources/**",
+                    "/order-controller",
                     "/v3/api-docs/**",
                     "/user/**"
             ).permitAll();

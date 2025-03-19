@@ -13,6 +13,7 @@ import lombok.NoArgsConstructor;
 public class Sales {
     private int year;
     private int month;
+    private int orderId;
     private int orderCount;
     private int totalSales;
 

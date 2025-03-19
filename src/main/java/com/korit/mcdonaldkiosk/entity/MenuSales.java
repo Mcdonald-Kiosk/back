@@ -10,6 +10,7 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 @Builder
 public class MenuSales {
+    private int menuSalesId;
     private int menuId;
     private int orderYear;
     private int orderMonth;

@@ -21,7 +21,6 @@ public class AdminSignUpService {
     @Transactional(rollbackFor = Exception.class)
     public Admin signUp(ReqAdminSignUpDto reqAdminSignUpDto) {
 
-        System.out.println(reqAdminSignUpDto.getEmail());
         Admin admin = Admin.builder()
                 .adminName(reqAdminSignUpDto.getAdminName())
                 .adminPassword(passwordEncoder.encode(reqAdminSignUpDto.getAdminPassword()))
