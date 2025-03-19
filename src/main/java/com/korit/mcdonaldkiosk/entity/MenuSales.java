@@ -9,7 +9,7 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 @NoArgsConstructor
 @Builder
-public class MenuSales {
+public class menuSales {
     private int menuId;
     private int orderYear;
     private int orderMonth;
