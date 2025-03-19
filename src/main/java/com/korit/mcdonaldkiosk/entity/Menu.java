@@ -18,7 +18,7 @@ public class Menu {
     private int menuSequence;
     private String singleImg;
     private String setImg;
-    private int isExposure;
+    private String isExposure;
 
     private List<MenuPrice> menuPrice;  // 💡 가격 정보를 포함하도록 추가
 }
