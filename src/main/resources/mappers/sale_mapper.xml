@@ -3,16 +3,16 @@
         PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
         "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
-<mapper namespace="com.study.home_project.repository.SalesMapper">
+<mapper namespace="com.korit.mcdonaldkiosk.entity.Sales">
 
-    <resultMap id="SalesResultMap" type="com.study.home_project.entity.Sales">
+    <resultMap id="SalesResultMap" type="com.korit.mcdonaldkiosk.entity.Sales">
         <result property="year" column="year" />
         <result property="month" column="month" />
-        <result property="totalOrders" column="total_orders" />
+        <result property="orderCount" column="order_count" />
         <result property="totalSales" column="total_sales" />
     </resultMap>
 
-    <resultMap id="MenuSalesResultMap" type="com.study.home_project.entity.MenuSales">
+    <resultMap id="MenuSalesResultMap" type="com.korit.mcdonaldkiosk.entity.MenuSales">
         <id property="menuId" column="menu_id" />
         <result property="orderYear" column="order_year" />
         <result property="orderMonth" column="order_month" />

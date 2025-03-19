@@ -2,8 +2,10 @@
 <!DOCTYPE mapper
         PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
         "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
 <mapper namespace="com.korit.mcdonaldkiosk.mapper.MenuMapper">
 
+    <!-- 메뉴와 가격을 조인 (menu_tb + menu_price_tb) -->
     <resultMap id="menuResultMap" type="com.korit.mcdonaldkiosk.entity.Menu">
         <id property="menuId" column="m.menu_id" />
         <result property="menuName" column="m.menu_name" />
@@ -13,8 +15,6 @@
         <result property="setImg" column="m.set_img" />
         <result property="isExposure" column="m.is_exposure" />
 
-        <!-- db에서 계산식 적용 -->
-        <!-- menuPrice 속성을 menuPriceResultMap과 연결 -->
         <collection property="menuPrice" resultMap="menuPriceResultMap"/>
     </resultMap>
 
@@ -26,45 +26,69 @@
         <result property="discountPrice" column="mp.discount_price" />
     </resultMap>
 
+    <!-- 전체 메뉴 조회 -->
     <select id="selectAllMenus" resultMap="menuResultMap">
         SELECT
-            m.menu_id,
-            m.menu_name,
-            m.menu_category,
-            m.menu_sequence,
-            m.single_img,
-            m.set_img,
-            m.is_exposure,
+        m.menu_id,
+        m.menu_name,
+        m.menu_category,
+        m.menu_sequence,
+        m.single_img,
+        m.set_img,
+        m.is_exposure,
 
-            mp.menu_id AS mp_menu_id,
-            mp.size,
-            mp.menu_price,
-            mp.discount_price
+        mp.menu_price_id,
+        mp.menu_id,
+        mp.size,
+        mp.menu_price,
+        mp.discount_price
         FROM
-            menu_tb m
-            LEFT OUTER JOIN menu_price_tb mp ON m.menu_id = mp.menu_id
+        menu_tb m
+        LEFT OUTER JOIN menu_price_tb mp ON m.menu_id = mp.menu_id
     </select>
 
-    <!--  메뉴 추가  -->
+    <!-- 특정 메뉴 가격 조회 -->
+    <select id="getMenuPrices" resultType="com.korit.mcdonaldkiosk.entity.MenuPrice">
+        SELECT * FROM menu_price_tb WHERE menu_id = #{menuId}
+    </select>
+
+    <!-- 메뉴 추가 -->
     <insert id="insertMenu" useGeneratedKeys="true" keyProperty="menuId">
         INSERT INTO
             menu_tb (
-                menu_name,
-                menu_category,
-                menu_sequence,
-                single_img,
-                set_img,
-                is_exposure
-            )
-        VALUES
-            (
-                #{menuName},
-                #{menuCategory},
-                #{menuSequence},
-                #{singleImg},
-                #{setImg},
-                #{isExposure}
-            );
+            menu_name,
+            menu_category,
+            menu_sequence,
+            single_img,
+            set_img,
+            is_exposure
+        ) VALUES (
+            #{menuName},
+            #{menuCategory},
+            #{menuSequence},
+            #{singleImg},
+            #{setImg},
+            #{isExposure}
+        );
     </insert>
+
+    <!-- 가격 추가 -->
+    <insert id="insertMenuPrices">
+        INSERT INTO menu_price_tb (menu_id, size, menu_price, discount_price)
+        VALUES
+        <foreach collection="menuPrices" item="price" separator=",">
+            (#{menuId}, #{price.size}, #{price.menuPrice}, #{price.discountPrice})
+        </foreach>
+    </insert>
+
+    <!-- 가격 삭제 -->
+    <delete id="deleteMenuPrices">
+        DELETE FROM menu_price_tb WHERE menu_id = #{menuId}
+    </delete>
+
+    <!-- 메뉴 삭제 -->
+    <delete id="deleteMenu">
+        DELETE FROM menu_tb WHERE menu_id = #{menuId}
+    </delete>
 
 </mapper>
