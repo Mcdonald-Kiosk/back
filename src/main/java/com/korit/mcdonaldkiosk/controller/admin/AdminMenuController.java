@@ -37,7 +37,7 @@ public class AdminMenuController {
     }
 
     // 모든 메뉴 리스트를 조회하는 API
-    @GetMapping("/menus")
+    @GetMapping("/menus1")
     public ResponseEntity<List<Menu>> getAllMenuList() {
         return ResponseEntity.ok().body(adminMenuService.getAllAdminMenuList());
     }
