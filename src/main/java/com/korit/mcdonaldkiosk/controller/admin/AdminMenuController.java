@@ -1,11 +1,13 @@
 package com.korit.mcdonaldkiosk.controller.admin;
 
 
+import com.korit.mcdonaldkiosk.dto.request.ReqExposureDto;
 import com.korit.mcdonaldkiosk.dto.request.ReqMenuListDto;
 import com.korit.mcdonaldkiosk.dto.response.RespMenuListDto;
 import com.korit.mcdonaldkiosk.entity.Menu;
 import com.korit.mcdonaldkiosk.entity.MenuPrice;
 import com.korit.mcdonaldkiosk.service.admin.AdminMenuService;
+import com.korit.mcdonaldkiosk.service.user.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
@@ -14,6 +16,7 @@ import org.springframework.web.bind.annotation.*;
 
 import java.security.Principal;
 import java.util.List;
+import java.util.Map;
 import java.util.stream.Collectors;
 
 @RestController
@@ -27,7 +30,7 @@ public class AdminMenuController {
     @GetMapping("/categories")
     public ResponseEntity<List<String>> getCategories() {
         List<Menu> allCategories = adminMenuService.getAllCategories();
-        //객체에서 카테고리 값만 빼온다.
+        //객체에서 카테고리 값만 추출한다.
         List<String> categories = allCategories
                 .stream()
                 .map(Menu::getMenuCategory)
@@ -36,49 +39,22 @@ public class AdminMenuController {
         return ResponseEntity.ok().body(categories);
     }
 
-    // 모든 메뉴 리스트를 조회하는 API
-    @GetMapping("/menus")
-    public ResponseEntity<List<Menu>> getAllMenuList() {
-        return ResponseEntity.ok().body(adminMenuService.getAllAdminMenuList());
+    // 메뉴 노출 여부 변경 API
+    // 프론트랑 연결이 원할하지 않을경우 Map이 아니라 dto 만들어서 값 받기
+    @PutMapping("/isExposure")
+    public ResponseEntity<?> changeExposure(
+            @RequestBody ReqExposureDto request
+    ) {
+        //받은값 int로 변환
+        int menuId = request.getMenuId();
+        int isExposure = request.getIsExposure();
+        adminMenuService.changeIsExposure(menuId, isExposure);
+        return ResponseEntity.ok().build();
     }
-
-    // 페이지 갯수 API
-    @GetMapping("/list")
-    public ResponseEntity<?> searchBoardList(@ModelAttribute ReqMenuListDto dto) {
-        //메뉴 갯수
-        int totalMenuListCount = adminMenuService.getMenuListCountByCategory(dto.getCategory());
-        //페이지 수 계산
-        int totalPages = totalMenuListCount * dto.getLimitCount() == 0
-                ? totalMenuListCount / dto.getLimitCount()
-                : totalMenuListCount / dto.getLimitCount() + 1;
-        //입력받은 카테고리와 일치하는 카테고리 찾기
-        String filteredCategory = adminMenuService.getAllCategories()
-                .stream()
-                .filter(menu -> menu.getMenuCategory().equals(dto.getCategory()))
-                .map(menu -> menu.getMenuCategory())
-                .collect(Collectors.joining(","));
-
-        if (filteredCategory.isEmpty()) {
-            dto.setCategory("전체");
-        }
-
-
-        //빌더로 객체를 생성하여 응답 담기
-        RespMenuListDto respMenuListDto =
-                RespMenuListDto.builder()
-                        .page(dto.getPage())
-                        .limitCount(dto.getLimitCount())
-                        .totalPages(totalPages)
-                        .totalElements(totalMenuListCount)
-                        .isFirstPage(dto.getPage() == 1)
-                        .isLastPage(dto.getPage() == totalPages)
-                        .nextPage(dto.getPage() != totalPages ? dto.getPage() + 1 :0)
-                        .menuList(adminMenuService.getMenuListSearchByCategory(dto)) //검색 조건에 맞는 카테고리 가져오기
-                        .build();
-
-        return ResponseEntity.ok().body(respMenuListDto);
-    }
-
+    //        String menuIdStr = request.getMenuId();
+//        int menuId = Integer.parseInt(menuIdStr);
+//        String isExposureStr = request.getIsExposure();
+//        int isExposure = Integer.parseInt(isExposureStr);
 
     // 모든 메뉴 조회
     @GetMapping("/menus")
@@ -106,5 +82,47 @@ public class AdminMenuController {
     }
 
 
-
 }
+
+//    // 모든 메뉴 리스트를 조회하는 API
+//    @GetMapping("/menus1")
+//    public ResponseEntity<List<Menu>> getAllMenuList() {
+//        return ResponseEntity.ok().body(adminMenuService.getAllAdminMenuList());
+//    }
+
+//    // 페이지 갯수 API
+//    @GetMapping("/list")
+//    public ResponseEntity<?> searchBoardList(@ModelAttribute ReqMenuListDto dto) {
+//        //메뉴 갯수
+//        int totalMenuListCount = adminMenuService.getMenuListCountByCategory(dto.getCategory());
+//        //페이지 수 계산
+//        int totalPages = totalMenuListCount * dto.getLimitCount() == 0
+//                ? totalMenuListCount / dto.getLimitCount()
+//                : totalMenuListCount / dto.getLimitCount() + 1;
+//        //입력받은 카테고리와 일치하는 카테고리 찾기
+//        String filteredCategory = adminMenuService.getAllCategories()
+//                .stream()
+//                .filter(menu -> menu.getMenuCategory().equals(dto.getCategory()))
+//                .map(menu -> menu.getMenuCategory())
+//                .collect(Collectors.joining(","));
+//
+//        if (filteredCategory.isEmpty()) {
+//            dto.setCategory("전체");
+//        }
+//
+//
+//        //빌더로 객체를 생성하여 응답 담기
+//        RespMenuListDto respMenuListDto =
+//                RespMenuListDto.builder()
+//                        .page(dto.getPage())
+//                        .limitCount(dto.getLimitCount())
+//                        .totalPages(totalPages)
+//                        .totalElements(totalMenuListCount)
+//                        .isFirstPage(dto.getPage() == 1)
+//                        .isLastPage(dto.getPage() == totalPages)
+//                        .nextPage(dto.getPage() != totalPages ? dto.getPage() + 1 :0)
+//                        .menuList(adminMenuService.getMenuListSearchByCategory(dto)) //검색 조건에 맞는 카테고리 가져오기
+//                        .build();
+//
+//        return ResponseEntity.ok().body(respMenuListDto);
+//    }
