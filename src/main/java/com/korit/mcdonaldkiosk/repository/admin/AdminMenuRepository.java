@@ -18,6 +18,11 @@ public class AdminMenuRepository {
     @Autowired
     private AdminMenuMapper adminMenuMapper;
 
+    // 모든 메뉴 리스트를 반환
+    public List<Menu> findAllInfoMenuList() {
+        return adminMenuMapper.selectAllInfoMenuList();
+    }
+
     // 모든 카테고리를 반환
     public List<Menu> findAllCategories() {
         return adminMenuMapper.selectAllCategories();
@@ -78,12 +83,6 @@ public class AdminMenuRepository {
 
 }
 
-
-//
-//    // 모든 메뉴 리스트를 반환
-//    public List<Menu> findAllAdminMenus() {
-//        return adminMenuMapper.selectAllAdminMenus();
-//    }
 //
 //    // 카테고리에 해당하는 메뉴 갯수를 반환(페이지관리)
 //    public int findMenuCountAllBySearchCategory(String searchCategory) {

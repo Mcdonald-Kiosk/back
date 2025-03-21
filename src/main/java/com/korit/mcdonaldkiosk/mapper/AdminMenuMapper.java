@@ -9,6 +9,7 @@ import java.util.List;
 
 @Mapper
 public interface AdminMenuMapper {
+    List<Menu> selectAllInfoMenuList();
     List<Menu> selectAllCategories();
     int updateIsExposureByClick(
             @Param("menuId") int menuId,
@@ -24,7 +25,7 @@ public interface AdminMenuMapper {
 
 }
 
-//    List<Menu> selectAllAdminMenus();
+
 //
 //    int selectMenuCountAllByCategory(@Param("searchCategory") String searchCategory);
 //

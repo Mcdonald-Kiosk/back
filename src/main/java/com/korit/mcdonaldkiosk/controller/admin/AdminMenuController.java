@@ -2,21 +2,15 @@ package com.korit.mcdonaldkiosk.controller.admin;
 
 
 import com.korit.mcdonaldkiosk.dto.request.ReqExposureDto;
-import com.korit.mcdonaldkiosk.dto.request.ReqMenuListDto;
-import com.korit.mcdonaldkiosk.dto.response.RespMenuListDto;
 import com.korit.mcdonaldkiosk.entity.Menu;
 import com.korit.mcdonaldkiosk.entity.MenuPrice;
 import com.korit.mcdonaldkiosk.service.admin.AdminMenuService;
-import com.korit.mcdonaldkiosk.service.user.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
-import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.web.bind.annotation.*;
 
 
-import java.security.Principal;
 import java.util.List;
-import java.util.Map;
 import java.util.stream.Collectors;
 
 @RestController
@@ -25,6 +19,12 @@ public class AdminMenuController {
 
     @Autowired
     private AdminMenuService adminMenuService;
+
+    // 메뉴의 모든 정보를 조회하는 API
+    @GetMapping("/menus1")
+    public ResponseEntity<List<Menu>> getAllInfoMenu() {
+        return ResponseEntity.ok().body(adminMenuService.getAllInfoMenuList());
+    }
 
     // 카테고리 목록을 조회하는 API
     @GetMapping("/categories")
@@ -51,10 +51,6 @@ public class AdminMenuController {
         adminMenuService.changeIsExposure(menuId, isExposure);
         return ResponseEntity.ok().build();
     }
-    //        String menuIdStr = request.getMenuId();
-//        int menuId = Integer.parseInt(menuIdStr);
-//        String isExposureStr = request.getIsExposure();
-//        int isExposure = Integer.parseInt(isExposureStr);
 
     // 모든 메뉴 조회
     @GetMapping("/menus")
@@ -84,11 +80,7 @@ public class AdminMenuController {
 
 }
 
-//    // 모든 메뉴 리스트를 조회하는 API
-//    @GetMapping("/menus1")
-//    public ResponseEntity<List<Menu>> getAllMenuList() {
-//        return ResponseEntity.ok().body(adminMenuService.getAllAdminMenuList());
-//    }
+
 
 //    // 페이지 갯수 API
 //    @GetMapping("/list")

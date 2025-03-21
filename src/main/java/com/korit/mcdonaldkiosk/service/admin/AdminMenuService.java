@@ -15,6 +15,11 @@ public class AdminMenuService {
     @Autowired
     private AdminMenuRepository adminMenuRepository;
 
+    // 메뉴의 모든 정보를 조회하는 메서드
+    public List<Menu> getAllInfoMenuList() {
+        return adminMenuRepository.findAllInfoMenuList();
+    }
+
     // 모든 카테고리를 조회하는 메서드
     public List<Menu> getAllCategories() {
         return adminMenuRepository.findAllCategories();
@@ -59,11 +64,6 @@ public class AdminMenuService {
 //                .map(Menu::getMenuCategory)
 //                .collect(Collectors.toList());
 //        return categories;
-//    }
-
-//    // 모든 메뉴를 조회하는 메서드
-//    public List<Menu> getAllAdminMenuList() {
-//        return adminMenuRepository.findAllAdminMenus();
 //    }
 //
 //    // 메뉴 갯수를 페이지에 할당하는 메서드
