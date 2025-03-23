@@ -3,11 +3,8 @@ package com.korit.mcdonaldkiosk.repository.admin;
 
 import com.korit.mcdonaldkiosk.entity.Menu;
 import com.korit.mcdonaldkiosk.entity.MenuPrice;
-import com.korit.mcdonaldkiosk.entity.Order;
 import com.korit.mcdonaldkiosk.mapper.AdminMenuMapper;
-import com.korit.mcdonaldkiosk.mapper.MenuMapper;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.core.annotation.MergedAnnotations;
 import org.springframework.stereotype.Repository;
 
 import java.util.List;
@@ -41,16 +38,16 @@ public class AdminMenuRepository {
         return adminMenuMapper.selectMenuListByCategory(startIndex, limitSize, category);
 
     }
+
     // 전체 메뉴 조회
     public Optional<List<Menu>> getAllMenus() {
         List<Menu> foundMenus = adminMenuMapper.selectAllMenus();
         return foundMenus.isEmpty() ? Optional.empty() : Optional.of(foundMenus);
     }
 
-    // 특정 메뉴 가격 조회
-    public Optional<List<MenuPrice>> getMenuPrices(int menuId) {
-        List<MenuPrice> foundMenuPrice = adminMenuMapper.getMenuPrices(menuId);
-        return foundMenuPrice.isEmpty() ? Optional.empty() : Optional.of(foundMenuPrice);
+    // 특정 메뉴 정보 조회
+    public Optional<Menu> getMenuById(int menuId) {
+        return Optional.ofNullable(adminMenuMapper.selectMenuById(menuId));
     }
 
     public Optional<Boolean> addMenu(Menu menu, List<MenuPrice> menuPrices) {

@@ -21,6 +21,7 @@ public interface AdminMenuMapper {
             @Param("category") String category
     );
     List<Menu> selectAllMenus();
+    Menu selectMenuById(int menuId);
     List<MenuPrice> getMenuPrices(int menuId);
     int insertMenu(Menu menu);
     int insertMenuPrices(@Param("menuId") int menuId, @Param("menuPrices") List<MenuPrice> menuPrices);
