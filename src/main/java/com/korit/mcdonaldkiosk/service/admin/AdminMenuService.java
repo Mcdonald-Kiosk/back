@@ -2,6 +2,7 @@ package com.korit.mcdonaldkiosk.service.admin;
 
 import com.korit.mcdonaldkiosk.entity.Menu;
 import com.korit.mcdonaldkiosk.entity.MenuPrice;
+import com.korit.mcdonaldkiosk.entity.MenuWithAllInfo;
 import com.korit.mcdonaldkiosk.repository.admin.AdminMenuRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -16,8 +17,8 @@ public class AdminMenuService {
     private AdminMenuRepository adminMenuRepository;
 
     // 메뉴의 모든 정보를 조회하는 메서드
-    public List<Menu> getAllInfoMenuList() {
-        return adminMenuRepository.findAllInfoMenuList();
+    public MenuWithAllInfo getAllInfoMenuList(int menuId) {
+        return adminMenuRepository.findAllInfoMenuById(menuId).orElse(null);
     }
 
     // 모든 카테고리를 조회하는 메서드

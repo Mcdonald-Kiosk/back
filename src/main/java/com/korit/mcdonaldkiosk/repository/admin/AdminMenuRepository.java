@@ -3,6 +3,7 @@ package com.korit.mcdonaldkiosk.repository.admin;
 
 import com.korit.mcdonaldkiosk.entity.Menu;
 import com.korit.mcdonaldkiosk.entity.MenuPrice;
+import com.korit.mcdonaldkiosk.entity.MenuWithAllInfo;
 import com.korit.mcdonaldkiosk.entity.Order;
 import com.korit.mcdonaldkiosk.mapper.AdminMenuMapper;
 import com.korit.mcdonaldkiosk.mapper.MenuMapper;
@@ -19,8 +20,8 @@ public class AdminMenuRepository {
     private AdminMenuMapper adminMenuMapper;
 
     // 모든 메뉴 리스트를 반환
-    public List<Menu> findAllInfoMenuList() {
-        return adminMenuMapper.selectAllInfoMenuList();
+    public Optional<MenuWithAllInfo> findAllInfoMenuById(int menuId) {
+        return Optional.ofNullable(adminMenuMapper.selectAllInfoMenuById(menuId));
     }
 
     // 모든 카테고리를 반환

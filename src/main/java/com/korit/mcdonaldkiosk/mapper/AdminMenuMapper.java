@@ -2,6 +2,7 @@ package com.korit.mcdonaldkiosk.mapper;
 
 import com.korit.mcdonaldkiosk.entity.Menu;
 import com.korit.mcdonaldkiosk.entity.MenuPrice;
+import com.korit.mcdonaldkiosk.entity.MenuWithAllInfo;
 import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Param;
 
@@ -9,7 +10,7 @@ import java.util.List;
 
 @Mapper
 public interface AdminMenuMapper {
-    List<Menu> selectAllInfoMenuList();
+    MenuWithAllInfo selectAllInfoMenuById(int menuId);
     List<Menu> selectAllCategories();
     int updateIsExposureByClick(
             @Param("menuId") int menuId,

@@ -3,6 +3,7 @@ package com.korit.mcdonaldkiosk.controller.admin;
 import com.korit.mcdonaldkiosk.dto.request.ReqExposureDto;
 import com.korit.mcdonaldkiosk.entity.Menu;
 import com.korit.mcdonaldkiosk.entity.MenuPrice;
+import com.korit.mcdonaldkiosk.entity.MenuWithAllInfo;
 import com.korit.mcdonaldkiosk.service.admin.AdminMenuService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
@@ -19,9 +20,10 @@ public class AdminMenuController {
     private AdminMenuService adminMenuService;
 
     // 메뉴의 모든 정보를 조회하는 API
-    @GetMapping("/menus1")
-    public ResponseEntity<List<Menu>> getAllInfoMenu() {
-        return ResponseEntity.ok().body(adminMenuService.getAllInfoMenuList());
+    @GetMapping("/menuinfo")
+    public ResponseEntity<MenuWithAllInfo> getAllInfoMenu(@RequestParam ReqExposureDto dto) {
+        System.out.println(adminMenuService.getAllInfoMenuList(dto.getMenuId()));
+        return ResponseEntity.ok().body(adminMenuService.getAllInfoMenuList(dto.getMenuId()));
     }
 
     // 카테고리 목록을 조회하는 API
