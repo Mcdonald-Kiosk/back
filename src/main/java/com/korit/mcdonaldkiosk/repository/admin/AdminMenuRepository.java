@@ -38,10 +38,9 @@ public class AdminMenuRepository {
         return foundMenus.isEmpty() ? Optional.empty() : Optional.of(foundMenus);
     }
 
-    // 특정 메뉴 가격 조회
-    public Optional<List<MenuPrice>> getMenuPrices(int menuId) {
-        List<MenuPrice> foundMenuPrice = adminMenuMapper.getMenuPrices(menuId);
-        return foundMenuPrice.isEmpty() ? Optional.empty() : Optional.of(foundMenuPrice);
+    // 특정 메뉴 정보 조회
+    public Optional<Menu> getMenuById(int menuId) {
+        return Optional.ofNullable(adminMenuMapper.selectMenuById(menuId));
     }
 
     public Optional<Boolean> addMenu(Menu menu, List<MenuPrice> menuPrices) {
@@ -74,26 +73,11 @@ public class AdminMenuRepository {
                 return Optional.of(false);
             }
 
-            return Optional.of(true); // ✅ 성공 시 true 반환
+            return Optional.of(true); //  성공 시 true 반환
         } catch (Exception e) {
             e.printStackTrace();
-            return Optional.of(false); // ❌ 실패 시 false 반환
+            return Optional.of(false); //  실패 시 false 반환
         }
     }
 
 }
-
-//
-//    // 카테고리에 해당하는 메뉴 갯수를 반환(페이지관리)
-//    public int findMenuCountAllBySearchCategory(String searchCategory) {
-//        return adminMenuMapper.selectMenuCountAllByCategory(searchCategory);
-//    }
-//
-//    // 카테고리에 해당하는 메뉴를 반환
-//    public List<Menu> findMenuListByCategory(
-//            int startIndex,
-//            int limitSize,
-//            String category) {
-//        return adminMenuMapper.selectMenuListByCategory(startIndex, limitSize, category);
-//
-//    }

@@ -37,9 +37,9 @@ public class AdminMenuService {
         return adminMenuRepository.getAllMenus().orElse(List.of());
     }
 
-    // 특정 메뉴의 가격 정보 조회
-    public List<MenuPrice> getMenuPrices(int menuId) {
-        return adminMenuRepository.getMenuPrices(menuId).orElse(List.of());
+    // 특정 메뉴 정보 조회
+    public Menu getMenuById(int menuId) {
+        return adminMenuRepository.getMenuById(menuId).orElse(null);
     }
 
     // 메뉴 추가 (가격 정보 포함)

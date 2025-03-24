@@ -1,6 +1,5 @@
 package com.korit.mcdonaldkiosk.controller.admin;
 
-
 import com.korit.mcdonaldkiosk.dto.request.ReqExposureDto;
 import com.korit.mcdonaldkiosk.entity.Menu;
 import com.korit.mcdonaldkiosk.entity.MenuPrice;
@@ -8,7 +7,6 @@ import com.korit.mcdonaldkiosk.service.admin.AdminMenuService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
-
 
 import java.util.List;
 import java.util.stream.Collectors;
@@ -30,7 +28,7 @@ public class AdminMenuController {
     @GetMapping("/categories")
     public ResponseEntity<List<String>> getCategories() {
         List<Menu> allCategories = adminMenuService.getAllCategories();
-        //객체에서 카테고리 값만 추출한다.
+        //객체에서 카테고리 값만 빼온다.
         List<String> categories = allCategories
                 .stream()
                 .map(Menu::getMenuCategory)
@@ -60,10 +58,12 @@ public class AdminMenuController {
 
 
     // 특정 메뉴의 가격 정보 조회
-    @GetMapping("/menus/{menuId}/prices")
-    public ResponseEntity<?> getMenuPrices(@PathVariable int menuId) {
-        return ResponseEntity.ok().body(adminMenuService.getMenuPrices(menuId));
+    @GetMapping("/menus/{menuId}")
+    public ResponseEntity<?> getMenuDetail(@PathVariable int menuId) {
+        Menu menu = adminMenuService.getMenuById(menuId);
+        return ResponseEntity.ok().body(menu);
     }
+
 
     // 메뉴 추가 (가격 포함)
     @PostMapping("/menus")
@@ -78,4 +78,6 @@ public class AdminMenuController {
     }
 
 
+
 }
+
