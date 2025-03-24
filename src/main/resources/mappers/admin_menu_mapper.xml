@@ -24,12 +24,32 @@
         <result property="discountPrice" column="discount_price" />
     </resultMap>
 
+    <resultMap id="menuWithInfoResultMap" type="com.korit.mcdonaldkiosk.entity.MenuWithAllInfo">
+        <id property="menuId" column="menu_id" />
+        <result property="menuName" column="menu_name" />
+        <result property="menuCategory" column="menu_category" />
+        <result property="singleImg" column="single_img" />
+        <result property="isExposure" column="is_exposure" />
+        <result property="menuPrice" column="menu_price" />
+        <result property="size" column="size" />
+        <result property="weightG" column="weight_g" />
+        <result property="volumeMl" column="volume_ml" />
+        <result property="calories" column="calories" />
+        <result property="sugars" column="sugars" />
+        <result property="protein" column="protein" />
+        <result property="saturatedFat" column="saturated_fat" />
+        <result property="sodium" column="sodium" />
+        <result property="caffeine" column="caffeine" />
+        <result property="menuOrigin" column="menu_origin" />
+    </resultMap>
+
     <!--아이디에 해당하는 메뉴정보 모두 불러오기-->
-    <select id="selectAllInfoMenuById" resultType="com.korit.mcdonaldkiosk.entity.MenuWithAllInfo">
+    <select id="selectAllInfoMenuById" resultMap="menuWithInfoResultMap">
         select
             mt.menu_id,
             mt.menu_name,
             mt.menu_category,
+            mt.menu_sequence,
             mt.single_img,
             mt.is_exposure,
 
