@@ -24,22 +24,35 @@
         <result property="discountPrice" column="discount_price" />
     </resultMap>
 
-    <!--카테고리에 해당하는 메뉴 불러오기-->
-    <select id="selectAllInfoMenuList" resultMap="menuResultMap">
-        SELECT
-        mt.menu_id,
-        mt.menu_name,
-        mt.menu_category,
-        mpt.menu_price,
-        mt.is_exposure
-        FROM
-        menu_tb mt
-        LEFT OUTER JOIN menu_price_tb mpt ON mt.menu_id = mpt.menu_id
-        <where>
-            <if test="category != null and category != '' and category != '전체'">
-                menu_category = #{category}
-            </if>
-        </where>
+    <!--아이디에 해당하는 메뉴정보 모두 불러오기-->
+    <select id="selectAllInfoMenuById" resultType="com.korit.mcdonaldkiosk.entity.MenuWithAllInfo">
+        select
+            mt.menu_id,
+            mt.menu_name,
+            mt.menu_category,
+            mt.single_img,
+            mt.is_exposure,
+
+            mpt.menu_price,
+
+            mit.size,
+            mit.weight_g,
+            mit.volume_ml,
+            mit.calories,
+            mit.sugars,
+            mit.protein,
+            mit.saturated_fat,
+            mit.sodium,
+            mit.caffeine,
+            mit.menu_origin
+
+        from
+            menu_tb mt
+            left outer join menu_price_tb mpt on mt.menu_id = mpt.menu_id
+            left outer join menu_info_tb mit on mt.menu_id = mit.menu_id
+
+        where
+            mt.menu_id = #{menuId}
     </select>
 
    
