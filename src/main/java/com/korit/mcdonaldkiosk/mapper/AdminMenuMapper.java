@@ -9,17 +9,13 @@ import java.util.List;
 
 @Mapper
 public interface AdminMenuMapper {
+    List<Menu> selectAllInfoMenuList();
     List<Menu> selectAllCategories();
-
-    List<Menu> selectAllAdminMenus();
+    int updateIsExposureByClick(
+            @Param("menuId") int menuId,
+            @Param("isExposure") int isExposure);
 
     int selectMenuCountAllByCategory(@Param("searchCategory") String searchCategory);
-
-    List<Menu> selectMenuListByCategory(
-            @Param("startIndex") int startIndex,
-            @Param("limitCount") int limitCount,
-            @Param("category") String category
-    );
     List<Menu> selectAllMenus();
     Menu selectMenuById(int menuId);
     List<MenuPrice> getMenuPrices(int menuId);
@@ -27,4 +23,6 @@ public interface AdminMenuMapper {
     int insertMenuPrices(@Param("menuId") int menuId, @Param("menuPrices") List<MenuPrice> menuPrices);
     int deleteMenuPrices(int menuId);
     int deleteMenu(int menuId);
+
+
 }
