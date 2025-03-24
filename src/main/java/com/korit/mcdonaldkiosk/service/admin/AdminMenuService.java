@@ -53,4 +53,29 @@ public class AdminMenuService {
     public boolean deleteMenu(int menuId) {
         return adminMenuRepository.deleteMenu(menuId).orElse(false);
     }
+
 }
+
+
+//    public List<String> getAllCategories() {
+//        List<Menu> allCategories = adminMenuRepository.findAllCategories();
+//        //객체에서 카테고리 값만 빼온다.
+//        List<String> categories = allCategories.stream()
+//                .map(Menu::getMenuCategory)
+//                .collect(Collectors.toList());
+//        return categories;
+//    }
+//
+//    // 메뉴 갯수를 페이지에 할당하는 메서드
+//    public int getMenuListCountByCategory(String searchCategory) {
+//        return adminMenuRepository.findMenuCountAllBySearchCategory(searchCategory);
+//    }
+//
+//    public List<Menu> getMenuListSearchByCategory(ReqMenuListDto reqMenuListDto) {
+//      int startIndex = (reqMenuListDto.getPage() - 1) * reqMenuListDto.getLimitCount();
+//      return adminMenuRepository.findMenuListByCategory(
+//              startIndex,
+//              reqMenuListDto.getLimitCount(),
+//              reqMenuListDto.getCategory()
+//      );
+//    }

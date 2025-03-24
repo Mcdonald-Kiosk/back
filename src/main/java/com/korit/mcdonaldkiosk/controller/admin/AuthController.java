@@ -35,6 +35,7 @@ public class AuthController {
                 alert("%s");
                 window.close();
             </script>
+
         """, emailService.auth(username, token));
 
         return ResponseEntity.ok().header("Content-Type", "text/html; charset=utf-8").body(script);

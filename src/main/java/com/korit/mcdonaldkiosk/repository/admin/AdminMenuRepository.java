@@ -32,14 +32,6 @@ public class AdminMenuRepository {
         adminMenuMapper.updateIsExposureByClick(menuId, isExposure);
     }
 
-    // 카테고리에 해당하는 메뉴를 반환
-    public List<Menu> findMenuListByCategory(
-            int startIndex,
-            int limitSize,
-            String category) {
-        return adminMenuMapper.selectMenuListByCategory(startIndex, limitSize, category);
-
-    }
     // 전체 메뉴 조회
     public Optional<List<Menu>> getAllMenus() {
         List<Menu> foundMenus = adminMenuMapper.selectAllMenus();
@@ -81,10 +73,10 @@ public class AdminMenuRepository {
                 return Optional.of(false);
             }
 
-            return Optional.of(true); // ✅ 성공 시 true 반환
+            return Optional.of(true); //  성공 시 true 반환
         } catch (Exception e) {
             e.printStackTrace();
-            return Optional.of(false); // ❌ 실패 시 false 반환
+            return Optional.of(false); //  실패 시 false 반환
         }
     }
 

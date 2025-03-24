@@ -15,7 +15,6 @@ public interface AdminMenuMapper {
             @Param("menuId") int menuId,
             @Param("isExposure") int isExposure);
 
-    int selectMenuCountAllByCategory(@Param("searchCategory") String searchCategory);
     List<Menu> selectAllMenus();
     Menu selectMenuById(int menuId);
     List<MenuPrice> getMenuPrices(int menuId);
@@ -23,6 +22,7 @@ public interface AdminMenuMapper {
     int insertMenuPrices(@Param("menuId") int menuId, @Param("menuPrices") List<MenuPrice> menuPrices);
     int deleteMenuPrices(int menuId);
     int deleteMenu(int menuId);
+
 
 
 }
