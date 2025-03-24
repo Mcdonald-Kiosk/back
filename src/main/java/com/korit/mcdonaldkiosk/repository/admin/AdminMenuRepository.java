@@ -18,29 +18,20 @@ public class AdminMenuRepository {
     @Autowired
     private AdminMenuMapper adminMenuMapper;
 
+    // 모든 메뉴 리스트를 반환
+    public List<Menu> findAllInfoMenuList() {
+        return adminMenuMapper.selectAllInfoMenuList();
+    }
+
     // 모든 카테고리를 반환
     public List<Menu> findAllCategories() {
         return adminMenuMapper.selectAllCategories();
     }
 
-    // 모든 메뉴 리스트를 반환
-    public List<Menu> findAllAdminMenus() {
-        return adminMenuMapper.selectAllAdminMenus();
+    public void updateIsExposure(int menuId,int isExposure) {
+        adminMenuMapper.updateIsExposureByClick(menuId, isExposure);
     }
 
-    // 카테고리에 해당하는 메뉴 갯수를 반환(페이지관리)
-    public int findMenuCountAllBySearchCategory(String searchCategory) {
-        return adminMenuMapper.selectMenuCountAllByCategory(searchCategory);
-    }
-
-    // 카테고리에 해당하는 메뉴를 반환
-    public List<Menu> findMenuListByCategory(
-            int startIndex,
-            int limitSize,
-            String category) {
-        return adminMenuMapper.selectMenuListByCategory(startIndex, limitSize, category);
-
-    }
     // 전체 메뉴 조회
     public Optional<List<Menu>> getAllMenus() {
         List<Menu> foundMenus = adminMenuMapper.selectAllMenus();
@@ -91,3 +82,18 @@ public class AdminMenuRepository {
     }
 
 }
+
+//
+//    // 카테고리에 해당하는 메뉴 갯수를 반환(페이지관리)
+//    public int findMenuCountAllBySearchCategory(String searchCategory) {
+//        return adminMenuMapper.selectMenuCountAllByCategory(searchCategory);
+//    }
+//
+//    // 카테고리에 해당하는 메뉴를 반환
+//    public List<Menu> findMenuListByCategory(
+//            int startIndex,
+//            int limitSize,
+//            String category) {
+//        return adminMenuMapper.selectMenuListByCategory(startIndex, limitSize, category);
+//
+//    }
