@@ -23,6 +23,7 @@ public interface AdminMenuMapper {
     int insertMenuPrices(@Param("menuId") int menuId, @Param("menuPrices") List<MenuPrice> menuPrices);
     int deleteMenuPrices(int menuId);
     int deleteMenu(int menuId);
+    List<Menu> selectAllMenuImages();
 
 
 

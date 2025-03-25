@@ -55,6 +55,10 @@ public class AdminMenuService {
         return adminMenuRepository.deleteMenu(menuId).orElse(false);
     }
 
+
+    public List<Menu> getAllMenuImages() {
+        return adminMenuRepository.getAllMenuImages();
+    }
 }
 
 

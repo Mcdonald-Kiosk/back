@@ -185,4 +185,16 @@
     <delete id="deleteMenu">
         DELETE FROM menu_tb WHERE menu_id = #{menuId}
     </delete>
+
+    <!--  페이지네이션 이미지 + 메뉴명  -->
+    <select id="selectAllMenuImages" resultType="com.korit.mcdonaldkiosk.entity.Menu">
+        SELECT
+            menu_id,
+            menu_name,
+            single_img,
+            set_img
+        FROM
+            menu_tb
+    </select>
+
 </mapper>

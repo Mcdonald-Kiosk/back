@@ -81,4 +81,9 @@ public class AdminMenuRepository {
         }
     }
 
+    // 페이지네이션 이미지 + 메뉴명
+    public List<Menu> getAllMenuImages() {
+        return adminMenuMapper.selectAllMenuImages();
+    }
+
 }
