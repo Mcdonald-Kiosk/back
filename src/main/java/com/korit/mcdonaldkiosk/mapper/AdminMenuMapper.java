@@ -24,6 +24,7 @@ public interface AdminMenuMapper {
     int deleteMenuPrices(int menuId);
     int deleteMenu(int menuId);
     List<Menu> selectAllMenuImages();
+    int updateMenu(Menu menu);
 
 
 

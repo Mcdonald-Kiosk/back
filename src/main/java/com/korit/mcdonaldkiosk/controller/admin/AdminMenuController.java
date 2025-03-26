@@ -66,6 +66,9 @@ public class AdminMenuController {
         return ResponseEntity.ok().body(menu);
     }
 
+    // 메뉴 수정
+
+
 
     // 메뉴 추가 (가격 포함)
     @PostMapping("/menus")
