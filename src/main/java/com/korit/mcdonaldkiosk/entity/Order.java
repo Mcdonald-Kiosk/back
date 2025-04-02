@@ -12,7 +12,8 @@ import java.time.LocalDateTime;
 @NoArgsConstructor
 @Builder
 public class Order {
-    private Integer orderId; // ✅ int → Integer 변경
+    private int orderId;      // 주문 ID (DB에서 생성)
+    private int orderTempId;  // 임시 주문 ID
     private LocalDateTime orderTime;
-    private int totalSales;
+    private int totalPrice;   // 총 가격
 }

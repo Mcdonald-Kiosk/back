@@ -69,7 +69,11 @@ public class SecurityConfig {
                     "/swagger-ui/**",
                     "/swagger-resources/**",
                     "/v3/api-docs/**",
-                    "/user/**"
+                    "/user/**",
+                    "/orders/**",
+                    "/orders/normal", // 0401
+                    "/orders/orderId", // 0401
+                    "/orders/detail" // 0401
             ).permitAll();
             authorizeRequests.anyRequest().authenticated();
         });
