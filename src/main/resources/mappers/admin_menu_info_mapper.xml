@@ -18,34 +18,36 @@
         <result property="menuOrigin" column="menu_origin" />
     </resultMap>
 
-    <insert id="addMenuInfo">
-        insert into menu_info_tb (
-            menu_id,
-            size,
-            weight,
-            volume,
-            calories,
-            sugars,
-            protein,
-            saturated_fat,
-            sodium,
-            caffeine,
-            menu_origin )
-        VALUES (
-            #{menuId},
-            #{size},
-            #{weight},
-            #{volume},
-            #{calories},
-            #{sugars},
-            #{protein},
-            #{saturatedFat},
-            #{sodium},
-            #{caffeine},
-            #{menuOrigin}
-        )
-    </insert>
 
+<!--    <insert id="addMenuInfo">-->
+<!--        insert into menu_info_tb (-->
+<!--            menu_id,-->
+<!--            size,-->
+<!--            weight,-->
+<!--            volume,-->
+<!--            calories,-->
+<!--            sugars,-->
+<!--            protein,-->
+<!--            saturated_fat,-->
+<!--            sodium,-->
+<!--            caffeine,-->
+<!--            menu_origin )-->
+<!--        VALUES (-->
+<!--            #{menuId},-->
+<!--            #{size},-->
+<!--            #{weight},-->
+<!--            #{volume},-->
+<!--            #{calories},-->
+<!--            #{sugars},-->
+<!--            #{protein},-->
+<!--            #{saturatedFat},-->
+<!--            #{sodium},-->
+<!--            #{caffeine},-->
+<!--            #{menuOrigin}-->
+<!--        )-->
+<!--    </insert>-->
+
+    <!--  메뉴 영양 정보 및 원산지 수정  -->
     <update id="updateMenuInfoByMenuId">
         UPDATE
             menu_info_tb
@@ -62,6 +64,15 @@
         WHERE
             menu_info_id = #{menuInfoId}
     </update>
+
+    <!--  메뉴 영양 정보 및 원산지 삭제  -->
+    <delete id="deleteMenuInfoByMenuId">
+        delete from
+            menu_info_tb
+        where
+            menu_id = #{menuId}
+
+    </delete>
 
     <!--  메뉴 영양 정보 및 원산지 단건 조회  -->
     <select id="getMenuInfoListByMenuId" resultMap="adminMenuInfoResultMap">

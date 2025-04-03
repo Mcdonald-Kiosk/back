@@ -34,15 +34,24 @@ public class AdminMenuInfoController {
     }
 
     // 메뉴 영양 정보 및 원산지 추가
-    @PostMapping("/menuInfo")
-    public ResponseEntity<?> addMenuInfo(@RequestBody ReqAdminMenuInfoDto reqDto) {
-        int result = adminMenuInfoService.addMenuInfo(reqDto);
-        if (result > 0) {
-            return ResponseEntity.ok("추가 완료");
-        } else {
-            return ResponseEntity.badRequest().body("추가 실패");
-        }
-    }
+//    @PostMapping("/menuInfo")
+//    public ResponseEntity<?> addMenuInfo(@RequestBody ReqAdminMenuInfoDto reqDto) {
+//        int result = adminMenuInfoService.addMenuInfo(reqDto);
+//        if (result > 0) {
+//            return ResponseEntity.ok("추가 완료");
+//        } else {
+//            return ResponseEntity.badRequest().body("추가 실패");
+//        }
+//    }
 
     // 메뉴 영양 정보 및 원산지 삭제
+    @DeleteMapping("/menuInfo/{menuId}")
+    public ResponseEntity<?> deleteMenuInfo(@PathVariable int menuId) {
+        boolean result = adminMenuInfoService.deleteMenuInfoByMenuId(menuId);
+        if (result) {
+            return ResponseEntity.ok("삭제 완료");
+        } else {
+            return ResponseEntity.badRequest().body("삭제 실패");
+        }
+    }
 }
