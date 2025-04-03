@@ -39,7 +39,7 @@ public interface AdminMenuMapper {
     List<Menu> selectAllMenuImages();
     // 메뉴 수정
     int updateMenu(Menu menu);
-
-
+    // 영양정보 및 원산지 테이블(menu_info_tb) 추가
+    int insertMenuInfo(@Param("menuId") int menuId, @Param("size") String size);
 
 }

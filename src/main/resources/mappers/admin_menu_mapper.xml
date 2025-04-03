@@ -207,6 +207,27 @@
         </foreach>
     </insert>
 
+    <!--  영양정보 및 원산지 추가  -->
+    <insert id="insertMenuInfo">
+        INSERT INTO menu_info_tb (
+            menu_id,
+            size,
+            weight,
+            volume,
+            calories,
+            sugars,
+            protein,
+            saturated_fat,
+            sodium,
+            caffeine,
+            menu_origin
+        )
+        VALUES (
+            #{menuId},
+            #{size},
+            0, 0, 0, 0, 0, 0, 0, 0, NULL
+        )
+    </insert>
 
     <!-- 기존 가격 삭제 -->
     <delete id="deleteMenuPrices" parameterType="int">
