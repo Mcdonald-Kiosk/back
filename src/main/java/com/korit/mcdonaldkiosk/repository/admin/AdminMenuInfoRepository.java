@@ -24,9 +24,12 @@ public class AdminMenuInfoRepository {
     }
 
     // 메뉴 영양 정보 및 원산지 추가
-    public int addMenuInfo(MenuInfo menuInfo) {
-        return adminMenuInfoMapper.addMenuInfo(menuInfo);
-    }
+//    public int addMenuInfo(MenuInfo menuInfo) {
+//        return adminMenuInfoMapper.addMenuInfo(menuInfo);
+//    }
 
     // 메뉴 영양 정보 및 원산지 삭제
+    public int deleteMenuInfoByMenuId(int menuId) {
+        return adminMenuInfoMapper.deleteMenuInfoByMenuId(menuId);
+    }
 }

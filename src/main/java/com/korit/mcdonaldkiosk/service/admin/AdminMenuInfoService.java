@@ -37,22 +37,25 @@ public class AdminMenuInfoService {
     }
 
     // 메뉴 영양 정보 및 원산지 추가
-    public int addMenuInfo(ReqAdminMenuInfoDto reqDto) {
-        MenuInfo menuInfo = MenuInfo.builder()
-                .menuId(reqDto.getMenuId()) // 추가할 때는 menuId 필요
-                .weight(reqDto.getWeight())
-                .volume(reqDto.getVolume())
-                .calories(reqDto.getCalories())
-                .sugars(reqDto.getSugars())
-                .protein(reqDto.getProtein())
-                .saturatedFat(reqDto.getSaturatedFat())
-                .sodium(reqDto.getSodium())
-                .caffeine(reqDto.getCaffeine())
-                .menuOrigin(reqDto.getMenuOrigin())
-                .size(reqDto.getSize()) // M or L
-                .build();
-        return adminMenuInfoRepository.addMenuInfo(menuInfo);
-    }
+//    public int addMenuInfo(ReqAdminMenuInfoDto reqDto) {
+//        MenuInfo menuInfo = MenuInfo.builder()
+//                .menuId(reqDto.getMenuId()) // 추가할 때는 menuId 필요
+//                .weight(reqDto.getWeight())
+//                .volume(reqDto.getVolume())
+//                .calories(reqDto.getCalories())
+//                .sugars(reqDto.getSugars())
+//                .protein(reqDto.getProtein())
+//                .saturatedFat(reqDto.getSaturatedFat())
+//                .sodium(reqDto.getSodium())
+//                .caffeine(reqDto.getCaffeine())
+//                .menuOrigin(reqDto.getMenuOrigin())
+//                .size(reqDto.getSize()) // M or L
+//                .build();
+//        return adminMenuInfoRepository.addMenuInfo(menuInfo);
+//    }
 
     // 메뉴 영양 정보 및 원산지 삭제
+    public boolean deleteMenuInfoByMenuId(int menuId) {
+        return adminMenuInfoRepository.deleteMenuInfoByMenuId(menuId) > 0;
+    }
 }
