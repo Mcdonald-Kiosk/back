@@ -11,7 +11,7 @@ import java.util.List;
 @Mapper
 public interface AdminMenuMapper {
     // 메뉴 상세 정보 조회
-    MenuWithAllInfo selectAllInfoMenuById(int menuId);
+    List<MenuWithAllInfo> selectAllInfoMenuById(int menuId);
 
     // 모든 카테고리 조회
     List<Menu> selectAllCategories();
