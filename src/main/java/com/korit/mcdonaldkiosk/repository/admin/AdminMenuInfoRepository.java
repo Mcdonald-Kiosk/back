@@ -22,4 +22,11 @@ public class AdminMenuInfoRepository {
     public int updateMenuInfo(MenuInfo menuInfo) {
         return adminMenuInfoMapper.updateMenuInfoByMenuId(menuInfo);
     }
+
+    // 메뉴 영양 정보 및 원산지 추가
+    public int addMenuInfo(MenuInfo menuInfo) {
+        return adminMenuInfoMapper.addMenuInfo(menuInfo);
+    }
+
+    // 메뉴 영양 정보 및 원산지 삭제
 }

@@ -58,6 +58,11 @@ public class AdminMenuRepository {
             if (!menuPrices.isEmpty()) {
                 adminMenuMapper.insertMenuPrice(menu.getMenuId(), menuPrices);
             }
+            // ⭐️ 영양정보 기본값 insert
+            adminMenuMapper.insertMenuInfo(menu.getMenuId(), "M");
+            if (menu.getSetImg() != null) {
+                adminMenuMapper.insertMenuInfo(menu.getMenuId(), "L");
+            }
             return Optional.of(true);
         } catch (Exception e) {
             e.printStackTrace();

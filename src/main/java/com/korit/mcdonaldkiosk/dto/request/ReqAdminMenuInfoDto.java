@@ -12,6 +12,8 @@ import lombok.NoArgsConstructor;
 
 public class ReqAdminMenuInfoDto {
     private int menuInfoId;
+    private int menuId;
+    private String size;
     private int weight;
     private int volume;
     private int calories;

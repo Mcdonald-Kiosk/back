@@ -18,6 +18,34 @@
         <result property="menuOrigin" column="menu_origin" />
     </resultMap>
 
+    <insert id="addMenuInfo">
+        insert into menu_info_tb (
+            menu_id,
+            size,
+            weight,
+            volume,
+            calories,
+            sugars,
+            protein,
+            saturated_fat,
+            sodium,
+            caffeine,
+            menu_origin )
+        VALUES (
+            #{menuId},
+            #{size},
+            #{weight},
+            #{volume},
+            #{calories},
+            #{sugars},
+            #{protein},
+            #{saturatedFat},
+            #{sodium},
+            #{caffeine},
+            #{menuOrigin}
+        )
+    </insert>
+
     <update id="updateMenuInfoByMenuId">
         UPDATE
             menu_info_tb
