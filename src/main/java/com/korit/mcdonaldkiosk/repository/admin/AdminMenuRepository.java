@@ -20,7 +20,7 @@ public class AdminMenuRepository {
     private AdminMenuMapper adminMenuMapper;
 
     // 모든 메뉴 리스트를 반환
-    public Optional<MenuWithAllInfo> findAllInfoMenuById(int menuId) {
+    public Optional<List<MenuWithAllInfo>> findAllInfoMenuById(int menuId) {
         return Optional.ofNullable(adminMenuMapper.selectAllInfoMenuById(menuId));
     }
 

@@ -17,7 +17,7 @@ public class AdminMenuService {
     private AdminMenuRepository adminMenuRepository;
 
     // 메뉴의 모든 정보를 조회하는 메서드
-    public MenuWithAllInfo getAllInfoMenuList(int menuId) {
+    public List<MenuWithAllInfo> getAllInfoMenuList(int menuId) {
         return adminMenuRepository.findAllInfoMenuById(menuId).orElse(null);
     }
 
