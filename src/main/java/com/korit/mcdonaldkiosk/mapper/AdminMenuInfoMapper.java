@@ -13,6 +13,4 @@ public interface AdminMenuInfoMapper {
     int updateMenuInfoByMenuId(MenuInfo menuInfo);
     // 메뉴 영양 정보 및 원산지 추가
 //    int addMenuInfo(MenuInfo menuInfo);
-    // 메뉴 영양 정보 및 원산지 삭제
-    int deleteMenuInfoByMenuId(int menuId);
 }
