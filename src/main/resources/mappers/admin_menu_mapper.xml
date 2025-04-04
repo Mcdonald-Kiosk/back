@@ -246,6 +246,14 @@
             menu_id = #{menuId}
     </delete>
 
+    <!--  영양정보 및 원산지 테이블(menu_info_tb) 삭제  -->
+    <delete id="deleteMenuInfo">
+        DELETE FROM
+            menu_info_tb
+        WHERE
+            menu_id = #{menuId}
+    </delete>
+
     <!--  페이지네이션 이미지 + 메뉴명  -->
     <select id="selectAllMenuImages" resultType="com.korit.mcdonaldkiosk.entity.Menu">
         SELECT
