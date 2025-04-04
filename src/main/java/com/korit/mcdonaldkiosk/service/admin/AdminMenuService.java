@@ -33,7 +33,7 @@ public class AdminMenuService {
     }
 
 
-    // 모든 메뉴 가져오기
+//     모든 메뉴 가져오기
     public List<Menu> getAllMenus() {
         return adminMenuRepository.getAllMenus().orElse(List.of());
     }

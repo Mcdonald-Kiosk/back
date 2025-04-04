@@ -73,7 +73,8 @@ public class AdminMenuRepository {
     // 메뉴 삭제
     public Optional<Boolean> deleteMenu(int menuId) {
         try {
-            adminMenuMapper.deleteMenuPrices(menuId);
+            adminMenuMapper.deleteMenuPrices(menuId); // 가격 테이블 삭제
+            adminMenuMapper.deleteMenuInfo(menuId); // 영양정보 및 원산지 테이블 삭제
             int deletedRows = adminMenuMapper.deleteMenu(menuId);
             return Optional.of(deletedRows > 0);
         } catch (Exception e) {
