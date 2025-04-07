@@ -116,4 +116,19 @@
         oat.oauth2_name = #{oAuth2Name}
     </select>
 
+    <select id="selectOAuth2ByOauth2Name" resultMap="oAuth2ResultMap">
+        select
+            oauth2_id,
+            oauth2_name,
+            admin_id,
+            provider_name,
+            create_data,
+            update_data
+        from
+            oauth2_tb
+        where
+            oauth2_name = #{oauth2_name}
+    </select>
+
+
 </mapper>

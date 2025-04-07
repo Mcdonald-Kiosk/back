@@ -58,17 +58,23 @@ public class CustomOAuth2UserService implements OAuth2UserService<OAuth2UserRequ
                     adminRepository.save(newUser);
                     return newUser;
                 });
+        
+        String finalOauth2Name = oauth2Name;
+        OAuth2 oAuth2 = adminRepository
+                .findOAuth2ByOauth2Name(oauth2Name)
+                .orElseGet(() -> {
+                    OAuth2 newOAuth2 = OAuth2.builder()
+                            .adminId(admin.getAdminId())
+                            .oAuth2Name(finalOauth2Name)
+                            .providerName(oauth2Provider)
+                            .build();
+                    System.out.println("저장될 어쓰:" + newOAuth2);
+                    adminRepository.saveOAuth2(newOAuth2); // OAuth2 정보도 저장
+                    return newOAuth2;
+                });
 
-        OAuth2 oAuth2 = OAuth2.builder()
-                .adminId(admin.getAdminId())
-                .oAuth2Name(oauth2Name)
-                .providerName(oauth2Provider)
-                .build();
 
-        System.out.println(oAuth2);
 
-// OAuth2 정보도 저장
-        adminRepository.saveOAuth2(oAuth2);
 
 
         return PrincipalUser.builder()
