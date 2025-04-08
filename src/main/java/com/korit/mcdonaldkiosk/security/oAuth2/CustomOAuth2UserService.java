@@ -58,7 +58,7 @@ public class CustomOAuth2UserService implements OAuth2UserService<OAuth2UserRequ
                     adminRepository.save(newUser);
                     return newUser;
                 });
-        
+
         String finalOauth2Name = oauth2Name;
         OAuth2 oAuth2 = adminRepository
                 .findOAuth2ByOauth2Name(oauth2Name)

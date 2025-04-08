@@ -14,6 +14,7 @@ import java.util.List;
 public class MenuWithAllInfo {
     private int menuId;
     private String menuName;
+    private String menuNameEng;
     private String menuCategory;
     private int menuSequence;
     private String singleImg;
