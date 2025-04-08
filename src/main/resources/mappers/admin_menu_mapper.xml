@@ -7,6 +7,7 @@
     <resultMap id="menuResultMap" type="com.korit.mcdonaldkiosk.entity.Menu">
         <id property="menuId" column="menu_id" />
         <result property="menuName" column="menu_name" />
+        <result property="menuNameEng" column="menu_name_eng" />
         <result property="menuCategory" column="menu_category" />
         <result property="menuSequence" column="menu_sequence" />
         <result property="singleImg" column="single_img" />
@@ -93,6 +94,7 @@
         SELECT
             m.menu_id,
             m.menu_name,
+            m.menu_name_eng,
             m.menu_category,
             m.menu_sequence,
             m.single_img,
@@ -138,6 +140,7 @@
         SELECT
             m.menu_id,
             m.menu_name,
+            m.menu_name_eng,
             m.menu_category,
             m.menu_sequence,
             m.single_img,
@@ -169,6 +172,7 @@
         INSERT INTO
             menu_tb (
             menu_name,
+            menu_name_eng,
             menu_category,
             menu_sequence,
             single_img,
@@ -271,6 +275,7 @@
             menu_tb
         SET
             menu_name = #{menuName},
+            menu_name_eng = #{menuNameEng},
             menu_category = #{menuCategory},
             menu_sequence = #{menuSequence},
             single_img = #{singleImg},
