@@ -77,6 +77,7 @@ public class AdminMenuController {
         // DTO → Entity 변환
         Menu menu = Menu.builder()
                 .menuName(dto.getMenuName())
+                .menuNameEng(dto.getMenuNameEng())
                 .menuCategory(dto.getMenuCategory())
                 .menuSequence(dto.getMenuSequence())
                 .singleImg(dto.getSingleImg())
@@ -111,6 +112,7 @@ public class AdminMenuController {
         Menu menu = Menu.builder()
                 .menuId(menuId)
                 .menuName(requestDto.getMenuName())
+                .menuNameEng(requestDto.getMenuNameEng())
                 .menuCategory(requestDto.getMenuCategory())
                 .menuSequence(requestDto.getMenuSequence())
                 .singleImg(requestDto.getSingleImg())
