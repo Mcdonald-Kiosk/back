@@ -32,5 +32,6 @@ public interface AdminMapper {
 
     int updateAccountEnabledByAdminName(@Param("adminName") String username);
 
+    //오어쓰 중복찾기
     OAuth2 selectOAuth2ByOauth2Name(String oauth2Name);
 }

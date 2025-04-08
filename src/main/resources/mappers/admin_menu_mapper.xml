@@ -42,6 +42,7 @@
     <resultMap id="menuWithInfoResultMap" type="com.korit.mcdonaldkiosk.entity.MenuWithAllInfo">
         <id property="menuId" column="menu_id" />
         <result property="menuName" column="menu_name" />
+        <result property="menuNameEng" column="menu_name_eng" />
         <result property="menuCategory" column="menu_category" />
         <result property="singleImg" column="single_img" />
         <result property="setImg" column="set_img" />
@@ -57,6 +58,7 @@
         select
             mt.menu_id,
             mt.menu_name,
+            mt.menu_name_eng,
             mt.menu_category,
             mt.menu_sequence,
             mt.single_img,
