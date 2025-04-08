@@ -13,6 +13,8 @@ public interface AdminMapper {
 
     int insertAdmin(Admin admin);
 
+    Admin findAdmimName(String admimName);
+
     int saveOAuth2(OAuth2 oAuth2);
 
     int updatePasswordById(
