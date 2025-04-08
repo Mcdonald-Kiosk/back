@@ -31,4 +31,5 @@ public interface AdminMapper {
 
     int updateAccountEnabledByAdminName(@Param("adminName") String username);
 
+    OAuth2 selectOAuth2ByOauth2Name(String oauth2Name);
 }
