@@ -53,5 +53,12 @@ public class AdminRepository {
     public void updateEmail(int adminID, String email) {
         adminMapper.updateEmailById(adminID, email);
     }
+    public void updateAccountEnabled(String adminName) {
+        adminMapper.updateAccountEnabledByAdminName(adminName);
+    }
 
+    //오어쓰 중복찾기
+    public Optional<OAuth2> findOAuth2ByOauth2Name(String oauth2Name) {
+        return Optional.ofNullable(adminMapper.selectOAuth2ByOauth2Name(oauth2Name));
+    }
 }

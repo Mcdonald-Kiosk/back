@@ -13,12 +13,13 @@ public interface AdminMapper {
 
     int insertAdmin(Admin admin);
 
+    Admin findAdmimName(String admimName);
 
     int saveOAuth2(OAuth2 oAuth2);
 
     int updatePasswordById(
             @Param("adminId") int adminId,
-            @Param("password") String password);
+            @Param("adminPassword") String adminPassword);
 
     int updateEmailById(
             @Param("adminId") int adminId,
@@ -29,4 +30,8 @@ public interface AdminMapper {
             @Param("adminId") int adminId,
             @Param("tradeName") String tradeName);
 
+    int updateAccountEnabledByAdminName(@Param("adminName") String username);
+
+    //오어쓰 중복찾기
+    OAuth2 selectOAuth2ByOauth2Name(String oauth2Name);
 }

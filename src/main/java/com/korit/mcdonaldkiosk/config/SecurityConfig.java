@@ -61,13 +61,19 @@ public class SecurityConfig {
             authorizeRequests.requestMatchers(
                     "/api/auth/**",
                     "/api/admin/**", //테스트용 임시 허용
+                    "/api/admin/menuinfo/**",//테스트용 임시 허용
                     "/api/user/**",
+                    "/api/admin/menuinfo",
                     "/image/**",
                     "/admin/**",
                     "/swagger-ui/**",
                     "/swagger-resources/**",
                     "/v3/api-docs/**",
-                    "/user/**"
+                    "/user/**",
+                    "/orders/**",
+                    "/orders/normal", // 0401
+                    "/orders/orderId", // 0401
+                    "/orders/detail" // 0401
             ).permitAll();
             authorizeRequests.anyRequest().authenticated();
         });
