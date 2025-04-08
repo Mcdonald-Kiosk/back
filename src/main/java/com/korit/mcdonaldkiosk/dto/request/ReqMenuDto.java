@@ -11,6 +11,7 @@ import java.util.List;
 @Builder
 public class ReqMenuDto {
     private String menuName;
+    private String menuNameEng;
     private String menuCategory;
     private int menuSequence;
     private String singleImg;
