@@ -57,4 +57,7 @@ public class AdminRepository {
         adminMapper.updateAccountEnabledByAdminName(adminName);
     }
 
+    public Optional<OAuth2> findOAuth2ByOauth2Name(String oauth2Name) {
+        return Optional.ofNullable(adminMapper.selectOAuth2ByOauth2Name(oauth2Name));
+    }
 }
