@@ -23,4 +23,7 @@ public class AdminSignUpRepository {
         return Optional.of(admin);
     }
 
+    public Optional<Admin> findByAdminName(String adminName) {
+        return Optional.ofNullable(adminMapper.findAdmimName(adminName));
+    }
 }

@@ -26,7 +26,7 @@
 
     <insert id="insertAdmin" keyProperty="adminId" useGeneratedKeys="true">
         insert into admin_tb
-        values(default, #{adminName},#{adminPassword},#{email},#{tradeName},now(),now())
+        values(default, #{adminName},#{adminPassword},#{email},#{tradeName},#{accountEnabled},now(),now())
     </insert>
 
     <insert id="saveOAuth2">
@@ -114,6 +114,14 @@
         left outer join oauth2_tb oat on(oat.admin_id = at.admin_id)
         where
         oat.oauth2_name = #{oAuth2Name}
+    </select>
+    <select id="findAdmimName" resultMap="adminResultMap">
+        select
+            admin_name
+        from
+            admin_tb
+        where
+            admin_name=#{adminName}
     </select>
 
 </mapper>
