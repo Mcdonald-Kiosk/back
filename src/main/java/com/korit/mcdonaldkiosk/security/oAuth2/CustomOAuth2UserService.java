@@ -59,6 +59,7 @@ public class CustomOAuth2UserService implements OAuth2UserService<OAuth2UserRequ
                     return newUser;
                 });
 
+        //오어쓰 오류 검증
         String finalOauth2Name = oauth2Name;
         OAuth2 oAuth2 = adminRepository
                 .findOAuth2ByOauth2Name(oauth2Name)
